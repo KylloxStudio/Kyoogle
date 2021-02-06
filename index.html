@@ -16,7 +16,7 @@
     
     <form action="https://www.google.com/search" method="GET">
         <div class="mx-auto search-bar input-group mb-3">
-            <input name="q" type="text" class="form-control rounded-pill" placeholder="     Kyoogle 검색 또는 URL 입력" aria-label="Kyoogle Search" aria-describedby="basic-addon2">
+            <input name="q" type="text" class="form-control rounded-pill" placeholder="Kyoogle 검색 또는 URL 입력" aria-label="Kyoogle Search" aria-describedby="basic-addon2">
           </div>
     </form>
 
@@ -27,6 +27,42 @@
     <div class="image-btn-wrap">
         <a class="image-btn" href="https://www.google.co.kr/imghp?hl=ko&tab=ri&authuser=0&ogbl">이미지</a>
     </div>
+
+    <div class="clock-wrap">
+        <h1 id="clock" class="clock">0000:00:00</h1>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
+
+    <script>
+        function clock() {
+            var date = new Date();
+            
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var week = ['일', '월', '화', '수', '목', '금', '토'];
+            var weekDate = date.getDate();
+            var day = date.getDay();
+
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+
+            if (hours > 12) {
+                $('#clock').html(`${year}년 ${month}월 ${day}일 ${week[weekDate]}요일` + '<br>' + '오후' + ` ${hours-12}시 ${minutes}분 ${seconds}초`);
+            } else {
+                $('#clock').html(`${year}년 ${month}월 ${day}일 ${week[weekDate]}요일` + '<br>' + '오전' + ` ${hours}시 ${minutes}분 ${seconds}초`);
+            }
+        }
+
+        function init() {
+            clock();
+            setInterval(clock, 1000);
+        }
+
+        init();
+    </script>
 
 </body>
 

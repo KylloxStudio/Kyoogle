@@ -39,13 +39,6 @@ h1 span:nth-child(7) {
     margin-top: 3.5%;
 }
 
-.search-icon {
-    width: 15px;
-    height: 13.5px;
-    margin-bottom: 0.2%;
-    transition: all 0.25s;
-}
-
 .gmail-btn-wrap {
     width: 34px;
     height: 24px;
@@ -88,4 +81,16 @@ h1 span:nth-child(7) {
 .image-btn:hover {
     text-decoration: underline;
     color: rgba(0, 0, 0, 0.87);
+}
+
+.clock-wrap {
+    position: absolute;
+    left: 15px;
+    bottom: 5px;
+}
+
+.clock {
+    font-size: 17.5px;
+    text-align: left;
+    color: #131112;
 }
