@@ -21,29 +21,48 @@
     </form>
 
     <div class="gmail-btn-wrap">
-        <a class="gmail-btn" href="https://mail.google.com">Kymail</a>
+        <a class="gmail-btn" href="https://mail.google.com">Gmail</a>
     </div>
 
     <div class="image-btn-wrap">
         <a class="image-btn" href="https://www.google.co.kr/imghp?hl=ko&tab=ri&authuser=0&ogbl">이미지</a>
     </div>
 
+    <div class="brain-btn-wrap">
+        <img src="https://brain-personality.site/images/main-image.png" alt="brain-icon" class="brain-icon">
+        <a class="brain-btn" href="https://brain-personality.site">뇌 성격 테스트 하러가기</a>
+    </div>
+
     <div class="clock-wrap">
-        <h1 id="clock" class="clock">0000:00:00</h1>
+        <h1 id="clock" class="clock">KRTimeClock</h1>
+    </div>
+
+    <div class="utc-clock-wrap">
+        <h1 id="utc-clock" class="clock">UTCTimeClock</h1>
     </div>
 
 
     <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
 
     <script>
+        window.onload = function() {
+            var agent = navigator.userAgent.toLowerCase();
+        
+            if( (navigator.appName == 'Netscape' && agent.indexOf('trident') != -1) || (agent.indexOf("msie") != -1)) {
+                alert("이 페이지는 인터넷 익스플로러(IE)를 지원하지 않습니다.\n확인을 누를 시 이전 페이지로 이동됩니다.");
+                history.back(); 
+            }
+        };
+
+
         function clock() {
-            var date = new Date();
+            let date = new Date();
             
             var year = date.getFullYear();
             var month = date.getMonth() + 1;
             var week = ['일', '월', '화', '수', '목', '금', '토'];
-            var weekDate = date.getDate();
-            var day = date.getDay();
+            var weekDate = date.getDay();
+            var day = date.getDate();
 
             var hours = date.getHours();
             var minutes = date.getMinutes();
@@ -54,6 +73,22 @@
             } else {
                 $('#clock').html(`${year}년 ${month}월 ${day}일 ${week[weekDate]}요일` + '<br>' + '오전' + ` ${hours}시 ${minutes}분 ${seconds}초`);
             }
+            UTCClock();
+        }
+
+        function UTCClock() {
+            let date = new Date();
+
+            var UTCYear = date.getUTCFullYear();
+            var UTCMonth = date.getUTCMonth() + 1;
+            var UTCDay = date.getUTCDate();
+
+            var UTCHours = date.getUTCHours();
+            var UTCMinutes = date.getUTCMinutes();
+            var UTCSeconds = date.getUTCSeconds();
+
+            
+            $('#utc-clock').html(`(UTC: ${UTCYear<10 ? `0${UTCYear}`:UTCYear} : ${UTCMonth<10 ? `0${UTCMonth}`:UTCMonth} : ${UTCDay<10 ? `0${UTCDay}`:UTCDay} / ${UTCHours<10 ? `0${UTCHours}`:UTCHours} : ${UTCMinutes<10 ? `0${UTCMinutes}`:UTCMinutes} : ${UTCSeconds<10 ? `0${UTCSeconds}`:UTCSeconds})`);
         }
 
         function init() {
